@@ -1,0 +1,114 @@
+use("filtroReact");
+db.createCollection("products", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["name", "image", "rating", "description", "price", "discount"],
+      properties: {
+        name: {
+          bsonType: "string",
+          maxLength: 70,
+          description: "name is required",
+        },
+        category: {
+          bsonType: "string",
+          description: "category is required",
+        },
+        image: {
+          bsonType: "string",
+          description: "image is required",
+        },
+        rating: {
+          bsonType: "int",
+          description: "rating is required",
+        },
+        description: {
+          bsonType: "string",
+          maxLength: 200,
+          description: "description is required",
+        },
+        price: {
+          bsonType: "int",
+          description: "price is required",
+        },
+        discount: {
+          bsonType: "int",
+          description: "discount is required",
+        },
+      },
+    },
+  },
+});
+
+use("filtroReact");
+db.createCollection("category", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["name"],
+      properties: {
+        name: {
+          bsonType: "string",
+          description: "name is required",
+        },
+      },
+    },
+  },
+});
+
+use("filtroReact");
+db.products.insertMany([
+  {
+    name: "tennis Nike ZK",
+    category: "sneakers",
+    image:
+      "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/18d4c326-fe9b-4c23-998f-1955550220ce/nikecourt-air-zoom-vapor-11-zapatillas-de-tenis-de-pista-rapida-1WqjnH.png",
+    rating: 5,
+    description: "Nice tennis racket from the best brand in sports.",
+    price: 245000,
+    discount: 0,
+  },
+  {
+    name: "tennis Adidas K45",
+    category: "sneakers",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSD7e6NzRUC2-5-fdCQKdwsqLxvPY60ZPODw&usqp=CAU",
+    rating: 5,
+    description: "Nice tennis racket from the best brand in sports.",
+    price: 100000,
+    discount: 0,
+  },
+  {
+    name: "tennis Adidas K45",
+    category: "running",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSD7e6NzRUC2-5-fdCQKdwsqLxvPY60ZPODw&usqp=CAU",
+    rating: 5,
+    description: "Nice tennis racket from the best brand in sports.",
+    price: 100000,
+    discount: 0,
+  },
+  {
+    name: "tennis Adidas K45",
+    category: "basketball",
+    image:
+      "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/6c7bfda2-fd20-470f-a243-8f057a929fdb/kd16-zapatillas-de-baloncesto-XHtFx7.png",
+    rating: 5,
+    description: "Nice tennis racket from the best brand in sports.",
+    price: 100000,
+    discount: 0,
+  },
+]);
+
+use("filtroReact");
+db.category.insertMany([
+  {
+    name: "sneakers",
+  },
+  {
+    name: "basketball",
+  },
+  {
+    name: "running",
+  },
+]);
